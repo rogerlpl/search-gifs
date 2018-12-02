@@ -11,5 +11,4 @@
 
 export const OPEN_LIGHTBOX = 'search-gif/Home/OPEN_LIGHTBOX';
 export const CLOSE_LIGHTBOX = 'search-gif/Home/CLOSE_LIGHTBOX';
-export const NEXT_SLIDE = 'search-gif/Home/NEXT_SLIDE';
-export const PREV_SLIDE = 'search-gif/Home/PREV_SLIDE';
+export const SET_SLIDE = 'search-gif/Home/SET_SLIDE';
