@@ -6,47 +6,30 @@ export default class Lightbox extends React.Component {
 
     render() {
         const { currentSlide, visible, gifs } = this.props;
-
+        // console.log()
         return (
             <React.Fragment>
-                <h1>React-Modal Examples</h1>
-                <input type="button" value="Open" onClick={() => this.props.onOpenLightbox()} />
                 <Modal visible={visible} width="90%" height="80%" effect="fadeInUp" onClickAway={() => this.props.onCloseLightbox()}>
                     <div className="lightbox-container">
                         {/* close button */}
                         <span className="close cursor" onClick={() => this.props.onCloseLightbox()}>&times;</span>
                         {/* main slide */}
-
-                        <img className="main-slide" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-
+                        {
+                           currentSlide ?
+                           <img className="main-slide" src={currentSlide.images.original.url} alt="" />
+                            : 
+                            null
+                        }
                         {/* thumbnails slides */}
                         <div className="thumbnail-container">
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
-                            <img className="thumbnail" src="https://www.w3schools.com/howto/img_snow.jpg" alt="" />
+                            {
+                                gifs ? 
+                                gifs.map((gif) => {
+                                  return  <img key={gif.id} onClick={() => this.props.onSetSlide(gif)} className="thumbnail" src={gif.images.original_still.url} alt="" />
+                                })
+                                    :
+                                    null
+                            }
                         </div>
                         {/* prev and next button */}
                         <a className="prev">&#10094;</a>
@@ -61,8 +44,12 @@ export default class Lightbox extends React.Component {
 
 Lightbox.propTypes = {
     visible: PropTypes.bool,
+    gifs: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.bool,
+    ]),
     currentSlide: PropTypes.oneOfType([
-        PropTypes.number,
+        PropTypes.object,
         PropTypes.oneOf([null]),
     ]),
     onOpenLightbox: PropTypes.func,

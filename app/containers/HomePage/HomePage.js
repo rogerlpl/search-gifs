@@ -47,7 +47,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
               />
               <button>Search</button>
             </form>
-            <Lightbox />
+            <Lightbox gifs={gifs} />
             <GifsList {...gifsListProps} />
           </section>
         </div>
