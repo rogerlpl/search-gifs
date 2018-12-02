@@ -34,7 +34,7 @@ describe('getGifs Saga', () => {
       name: 'Second gif',
     }];
     const putDescriptor = getGifsGenerator.next(response).value;
-    expect(putDescriptor).toEqual(put(gifsLoaded(response, keyword)));
+    expect(putDescriptor).toEqual(put(gifsLoaded(response.data, keyword)));
   });
 
   it('should call the gifLoadingError action if the response errors', () => {

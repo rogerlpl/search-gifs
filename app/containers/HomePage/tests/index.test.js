@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import GifsList from 'components/GifsList';
 import HomePage from '../HomePage';
@@ -12,43 +12,13 @@ import { changeKeyword } from '../actions';
 import { loadGifs } from '../../App/actions';
 
 describe('<HomePage />', () => {
-  it('should render the repos list', () => {
+  it('should render the gifs list', () => {
     const renderedComponent = shallow(
       <HomePage loading error={false} gifs={[]} />
     );
     expect(
       renderedComponent.contains(<GifsList loading error={false} gifs={[]} />)
     ).toEqual(true);
-  });
-
-  it('should render fetch the gifs on mount if a keyword exists', () => {
-    const submitSpy = jest.fn();
-    mount(
-      <HomePage
-        keyword="Not Empty"
-        onChangeKeyword={() => {}}
-        onSubmitForm={submitSpy}
-      />
-    );
-    expect(submitSpy).toHaveBeenCalled();
-  });
-
-  it('should not call onSubmitForm if keyword is an empty string', () => {
-    const submitSpy = jest.fn();
-    mount(<HomePage onChangeKeyword={() => {}} onSubmitForm={submitSpy} />);
-    expect(submitSpy).not.toHaveBeenCalled();
-  });
-
-  it('should not call onSubmitForm if keyword is null', () => {
-    const submitSpy = jest.fn();
-    mount(
-      <HomePage
-        keyword=""
-        onChangeKeyword={() => {}}
-        onSubmitForm={submitSpy}
-      />
-    );
-    expect(submitSpy).not.toHaveBeenCalled();
   });
 
   describe('mapDispatchToProps', () => {
