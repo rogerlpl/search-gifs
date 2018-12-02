@@ -15,9 +15,9 @@ export default class GifListItem extends React.PureComponent { // eslint-disable
 
     // Put together the title
     const content = (
-      <div className="item" onClick={() => {this.props.onSetSlide(item);this.props.onOpenLightbox();}}>
+      <div className="item" onClick={() => { this.props.onSetSlide(item); this.props.onOpenLightbox(); }} role="button" tabIndex={0} onKeyPress={() => { }}>
         <figure className="item-gif">
-          <img  src={item.images.original_still.url} alt="" />
+          <img src={item.images.original_still.url} alt="" />
         </figure>
         <span className="item-overlay">
           <p>
@@ -37,4 +37,5 @@ export default class GifListItem extends React.PureComponent { // eslint-disable
 GifListItem.propTypes = {
   item: PropTypes.object,
   onSetSlide: PropTypes.func,
+  onOpenLightbox: PropTypes.func,
 };

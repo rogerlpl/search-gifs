@@ -16,9 +16,9 @@
  */
 
 import {
-    OPEN_LIGHTBOX,
-    CLOSE_LIGHTBOX,
-    SET_SLIDE 
+  OPEN_LIGHTBOX,
+  CLOSE_LIGHTBOX,
+  SET_SLIDE
 } from './constants';
 
 /**

@@ -12,9 +12,9 @@
 import { fromJS } from 'immutable';
 
 import {
-    OPEN_LIGHTBOX,
-    CLOSE_LIGHTBOX,
-    SET_SLIDE 
+  OPEN_LIGHTBOX,
+  CLOSE_LIGHTBOX,
+  SET_SLIDE
 } from './constants';
 
 // The initial state of the App
@@ -25,14 +25,14 @@ const initialState = fromJS({
 
 function lightboxReducer(state = initialState, action) {
   switch (action.type) {
-      case OPEN_LIGHTBOX:
-        return state.set('visible', true);
-      case CLOSE_LIGHTBOX:
-        return state
-        .set('visible', false)
-      case SET_SLIDE:
-        return state.set('currentSlide', action.slide);
-      default:
+    case OPEN_LIGHTBOX:
+      return state.set('visible', true);
+    case CLOSE_LIGHTBOX:
+      return state
+        .set('visible', false);
+    case SET_SLIDE:
+      return state.set('currentSlide', action.slide);
+    default:
       return state;
   }
 }

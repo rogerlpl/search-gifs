@@ -2,15 +2,15 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
-import { 
-    openLightbox,
-    closeLightbox,
-    setCurrentSlide
- } from './actions';
 import {
-     makeSelectCurrentSlide,
-     makeSelectVisibility
- } from './selectors';
+  openLightbox,
+  closeLightbox,
+  setCurrentSlide
+} from './actions';
+import {
+  makeSelectCurrentSlide,
+  makeSelectVisibility
+} from './selectors';
 import reducer from './reducer';
 import Lightbox from './Lightbox';
 
@@ -18,8 +18,8 @@ const mapDispatchToProps = (dispatch) => ({
   onOpenLightbox: () => dispatch((openLightbox())),
   onCloseLightbox: () => dispatch((closeLightbox())),
   onSetSlide: (slide) => {
-      dispatch(setCurrentSlide(slide));
-    }
+    dispatch(setCurrentSlide(slide));
+  }
 });
 
 const mapStateToProps = createStructuredSelector({
