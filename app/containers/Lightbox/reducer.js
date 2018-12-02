@@ -30,7 +30,6 @@ function lightboxReducer(state = initialState, action) {
       case CLOSE_LIGHTBOX:
         return state
         .set('visible', false)
-        .set('currentSlide', null);
       case SET_SLIDE:
         return state.set('currentSlide', action.slide);
       default:

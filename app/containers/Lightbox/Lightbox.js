@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-awesome-modal';
 import './style.scss';
-export default class Lightbox extends React.Component {
+export default class Lightbox extends React.PureComponent {
 
     render() {
         const { currentSlide, visible, gifs } = this.props;
+        const GIF_LAST_ELEMENT = gifs.length -1;
+        const GIF_FIRST_ELEMENT = 0;
         // console.log()
         return (
             <React.Fragment>
@@ -15,25 +17,43 @@ export default class Lightbox extends React.Component {
                         <span className="close cursor" onClick={() => this.props.onCloseLightbox()}>&times;</span>
                         {/* main slide */}
                         {
-                           currentSlide ?
-                           <img className="main-slide" src={currentSlide.images.original.url} alt="" />
-                            : 
-                            null
+                            currentSlide ?
+                                <video autoPlay="autoplay" loop className="main-slide" src={currentSlide.images.original.mp4} />
+                                :
+                                null
                         }
                         {/* thumbnails slides */}
                         <div className="thumbnail-container">
                             {
-                                gifs ? 
-                                gifs.map((gif) => {
-                                  return  <img key={gif.id} onClick={() => this.props.onSetSlide(gif)} className="thumbnail" src={gif.images.original_still.url} alt="" />
-                                })
+                                gifs && currentSlide ?
+                                    gifs.map((gif) => {
+                                        if (gif.id !== currentSlide.id) {
+                                            return <img key={gif.id} onClick={() => this.props.onSetSlide(gif)} className="thumbnail" src={gif.images.original_still.url} alt="" />
+                                        } else {
+                                            return <img key={gif.id} onClick={() => this.props.onSetSlide(gif)} className="active thumbnail" src={gif.images.original_still.url} alt="" />
+                                        }
+                                    })
                                     :
                                     null
                             }
                         </div>
                         {/* prev and next button */}
-                        <a className="prev">&#10094;</a>
-                        <a className="next">&#10095;</a>
+                        <a className="prev" onClick={() => {
+                            gifs.filter((gif, index, array) => {
+                                if (currentSlide.id === gif.id && currentSlide) {
+                                    if (index !== 0) this.props.onSetSlide(array[index - 1])
+                                    else this.props.onSetSlide(array[GIF_LAST_ELEMENT])
+                                }
+                            });
+                        }}>&#10094;</a>
+                        <a className="next" onClick={() => {
+                             gifs.filter((gif, index, array) => {
+                                if (currentSlide.id === gif.id && currentSlide) {
+                                    if (index !== GIF_LAST_ELEMENT) this.props.onSetSlide(array[index + 1])
+                                    else this.props.onSetSlide(array[GIF_FIRST_ELEMENT])
+                                }
+                            });
+                        }}>&#10095;</a>
                     </div>
                 </Modal>
             </React.Fragment>

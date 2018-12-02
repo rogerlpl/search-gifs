@@ -19,6 +19,9 @@
         margin: 5px;
         opacity: 0.6;
     }
+    img.active.thumbnail{
+        opacity: 1;
+    }
     img.thumbnail:hover {
         opacity: 1;
         cursor: pointer;
