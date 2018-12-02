@@ -57,7 +57,7 @@ export default class Lightbox extends React.PureComponent {
               className="next"
               role="button"
               tabIndex={0}
-              onKeyPress=""
+              onKeyPress={() => { }}
               onClick={() => gifs.filter((gif, index, array) => {
                 if (currentSlide.id === gif.id && currentSlide) {
                   if (index !== GIF_LAST_ELEMENT) {

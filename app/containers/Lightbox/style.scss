@@ -2,17 +2,18 @@
     background-color: #2f3542;
     height: 100%;
     display: grid;
-    justify-items: center;
+    justify-items: auto;
     .main-slide {
+        
         margin-top: 20px;
+        justify-self: center;
         width: 80%;
         min-height: 400px;
         max-height: 600px;
-    }
-    .thumbnail-container {
-        justify-items: flex-start;
+      
     }
     img.thumbnail {
+        justify-self: start;
         float: left;
         width: 50px;
         height: 50px;
