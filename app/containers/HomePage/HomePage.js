@@ -8,6 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import GifsList from 'components/GifsList';
+import Lightbox from 'containers/Lightbox';
 import './style.scss';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -46,6 +47,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
               />
               <button>Search</button>
             </form>
+            <Lightbox />
             <GifsList {...gifsListProps} />
           </section>
         </div>

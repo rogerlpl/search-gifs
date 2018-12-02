@@ -20,7 +20,7 @@ import {
 // The initial state of the App
 const initialState = fromJS({
   visible: false,
-  currentSlide: 0,
+  currentSlide: null,
 });
 
 function lightboxReducer(state = initialState, action) {
@@ -28,7 +28,9 @@ function lightboxReducer(state = initialState, action) {
       case OPEN_LIGHTBOX:
         return state.set('visible', true);
       case CLOSE_LIGHTBOX:
-        return state.set('visible', false);
+        return state
+        .set('visible', false)
+        .set('currentSlide', null);
       case SET_SLIDE:
         return state.set('currentSlide', action.slide);
       default:
